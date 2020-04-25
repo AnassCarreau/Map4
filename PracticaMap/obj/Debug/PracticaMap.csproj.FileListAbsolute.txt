@@ -1,0 +1,6 @@
+C:\Users\anass\source\repos\PracticaMap\obj\Debug\PracticaMap.csprojAssemblyReference.cache
+C:\Users\anass\source\repos\PracticaMap\bin\Debug\PracticaMap.exe.config
+C:\Users\anass\source\repos\PracticaMap\bin\Debug\PracticaMap.exe
+C:\Users\anass\source\repos\PracticaMap\bin\Debug\PracticaMap.pdb
+C:\Users\anass\source\repos\PracticaMap\obj\Debug\PracticaMap.exe
+C:\Users\anass\source\repos\PracticaMap\obj\Debug\PracticaMap.pdb
