@@ -1,6 +1,0 @@
-C:\Users\anass\Desktop\Map\Practica4\Conqueror\bin\Debug\Conqueror.exe.config
-C:\Users\anass\Desktop\Map\Practica4\Conqueror\bin\Debug\Conqueror.exe
-C:\Users\anass\Desktop\Map\Practica4\Conqueror\bin\Debug\Conqueror.pdb
-C:\Users\anass\Desktop\Map\Practica4\Conqueror\obj\Debug\Conqueror.csprojAssemblyReference.cache
-C:\Users\anass\Desktop\Map\Practica4\Conqueror\obj\Debug\Conqueror.exe
-C:\Users\anass\Desktop\Map\Practica4\Conqueror\obj\Debug\Conqueror.pdb

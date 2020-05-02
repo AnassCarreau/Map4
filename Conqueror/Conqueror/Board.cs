@@ -54,8 +54,10 @@ namespace Conqueror
         /// <param name="numDecks">Número de mazos del tablero</param>
         public Board(int maxCities, int numDecks)
         {
-            
-
+            nDecks = numDecks;
+          decks = new Lista[nDecks];
+            nCities = maxCities;
+            cities= new City[nCities];
         }
 
         /// <summary>
@@ -69,8 +71,22 @@ namespace Conqueror
         /// </returns>
         public bool AddCity(string cityName, int cityDefense, int cityPoints)
         {
-            return false;
-
+            if (cities[cities.Length-1].name == null) 
+            {
+                int i = 0;
+                while (i < cities.Length) 
+                {
+                   if(cities[i].name == null)
+                    {
+                        cities[i].name = cityName;
+                        cities[i].defense = cityDefense;
+                        cities[i].points = cityPoints;
+                        return true;
+                    }
+                    i++;
+                }
+            }
+             return false;
         }
 
         /// <summary>
@@ -83,6 +99,19 @@ namespace Conqueror
         /// </returns>
         public bool AddCityToDeck(string cityName, int deckIndex)
         {
+            if (deckIndex < nDecks) 
+            { int i = 0;
+                while (i < cities.Length) 
+                {
+                    if (cities[i].name == cityName) 
+                    {
+                        decks[deckIndex] = new Lista();
+                        decks[deckIndex].InsertaFin(i);
+                        return true;
+                    }
+                    i++;
+                }
+            }
             return false;
 
         }
@@ -95,7 +124,14 @@ namespace Conqueror
         /// (o 0, si no hay ciudades en ese mazo).</returns>
         public int ComputeDefensePointsInDeck(int deckIndex)
         {
-            return 0;
+            int suma =0;
+            int cityIndex;
+            for (int i = 0; i < decks[deckIndex].NumEltos(); i++) 
+            {
+                cityIndex = decks[deckIndex].N_esimo(i);
+                suma += cities[cityIndex].defense;
+            }
+            return suma;
 
         }
 
@@ -114,8 +150,21 @@ namespace Conqueror
         /// <returns>La posición en la que termina el jugador dentro de la secuencia de mazos</returns>
         public int Move(int playerPosition, int steps, Direction movementDir)
         {
-            return 0;
+            int move = 0;
+            if (movementDir == Direction.Right) { move = 1; }
+            else move = -1;
+            for (int i = 0; i < steps; i++)
+            {
+                playerPosition += move;
 
+            }
+
+            if (playerPosition < 0)
+            { playerPosition = (decks.Length - 1) + playerPosition; }
+            else if (playerPosition >= decks.Length)
+            { playerPosition = (decks.Length - 1) - playerPosition; }
+
+            return playerPosition;
         }
 
         /// <summary>
@@ -125,7 +174,7 @@ namespace Conqueror
         /// <returns>El número de puntos que da al jugador la ciudad</returns>
         public int GetCityPoints(int cityIndex)
         {
-            return 0;
+            return cities[cityIndex].points;
 
         }
 
@@ -140,8 +189,7 @@ namespace Conqueror
         /// <returns>True si el ataque fue un éxito; false, en otro caso </returns>
         public bool AttackCity(int cityIndex, int attackPoints)
         {
-            return false;
-
+            return cities[cityIndex].defense< attackPoints;
         }
 
         /// <summary>
@@ -152,8 +200,8 @@ namespace Conqueror
         /// <returns>True, si la ciudad ha sido eliminada; false, en otro caso (el
         /// número de mazo no existe o la ciudad indicada no aparece en el mazo)</returns>
         public bool RemoveCityFromDeck(int deckIndex, int cityIndex)
-        {
-            return false;
+        {   
+            return decks[deckIndex].BorraElto(cityIndex);
         }
 
 
@@ -166,9 +214,21 @@ namespace Conqueror
         /// En caso contrario, devuelve -1</returns>
         public int FindCityByName(string cityName)
         {
-            return 0;
+            int i = 0;
+            while (i < cities.Length ) 
+            {
+                if (cities[i].name == cityName) 
+                {
+                    return i;
+                }
+                i++;
+            }
+            return -1 ;
         }
-
+        public bool FindCityInDeck(int deckIndex, int cityIndex) 
+        {
+            return decks[deckIndex].Esta(cityIndex);
+        }
         /// <summary>
         /// Devuelve una cadena con información sobre las cartas de un mazo
         /// </summary>

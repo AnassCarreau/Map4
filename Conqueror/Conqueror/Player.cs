@@ -44,6 +44,10 @@ namespace Conqueror
         /// <param name="initialDeckIndex">Posición inicial del jugador dentro de la secuencia de mazos</param>
         public Player(int maxMovements, int AP, int initialDeckIndex)
         {
+            remainingMovements = maxMovements;
+            attackPoints = AP;
+            currentPosition = initialDeckIndex;
+            conqueredCities = new Lista();
         }
 
         /// <summary>
@@ -62,7 +66,17 @@ namespace Conqueror
         /// el número de movimientos que le quedan al jugador</exception>
         public bool Move(Board theBoard, int steps, Direction movementDir)
         {
-            return false;
+            remainingMovements -= steps;
+            if (steps < 0 || remainingMovements < 0)
+            {
+                throw new Exception("error n-esimo");
+            }
+            else
+            {
+                currentPosition = theBoard.Move(currentPosition, steps, movementDir);
+                return remainingMovements > 0;
+            }
+
         }
 
 
@@ -75,8 +89,17 @@ namespace Conqueror
         /// no ha conquistado ninguna ciudad)</returns>
         public int ComputePlayerPoints(Board theBoard)
         {
-            return 0;
+            if (conqueredCities.NumEltos() != 0)
+            {
+                int suma = 0;
+                for (int i = 0; i < conqueredCities.NumEltos(); i++)
+                {
+                    suma += theBoard.GetCityPoints(conqueredCities.N_esimo(i));
+                }
+                return suma;
 
+            }
+            else return 0;
         }
 
 
@@ -96,7 +119,15 @@ namespace Conqueror
         /// </exception>
         public bool AttackCity(Board theBoard, string cityName)
         {
-
+            int cityindex = theBoard.FindCityByName(cityName);
+            //excepcion         
+            if (cityindex == -1 || theBoard.FindCityInDeck(currentPosition, cityindex))
+            { throw new Exception("error n-esimo"); }
+            else if (theBoard.AttackCity(cityindex, attackPoints))
+            {
+                conqueredCities.InsertaFin(cityindex);
+                return theBoard.RemoveCityFromDeck(currentPosition, cityindex);
+            }
             return false;
         }
 
