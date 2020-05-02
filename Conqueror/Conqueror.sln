@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29409.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conqueror", "Conqueror.csproj", "{C7370D39-405C-4AAE-9692-9EE830A9E16E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "..\Tests\Tests.csproj", "{A734D9E2-D832-4915-8CC1-9C0AA5E56351}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7370D39-405C-4AAE-9692-9EE830A9E16E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7370D39-405C-4AAE-9692-9EE830A9E16E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7370D39-405C-4AAE-9692-9EE830A9E16E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7370D39-405C-4AAE-9692-9EE830A9E16E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A734D9E2-D832-4915-8CC1-9C0AA5E56351}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A734D9E2-D832-4915-8CC1-9C0AA5E56351}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A734D9E2-D832-4915-8CC1-9C0AA5E56351}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A734D9E2-D832-4915-8CC1-9C0AA5E56351}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33D4CEF6-7B3C-45F5-A0BC-B2917E949AFB}
+	EndGlobalSection
+EndGlobal
