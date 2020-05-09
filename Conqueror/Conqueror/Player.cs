@@ -66,15 +66,15 @@ namespace Conqueror
         /// el número de movimientos que le quedan al jugador</exception>
         public bool Move(Board theBoard, int steps, Direction movementDir)
         {
-            remainingMovements -= steps;
-            if (steps < 0 || remainingMovements < 0)
+            if (steps < 0 || remainingMovements < steps)
             {
-                throw new Exception("error n-esimo");
+                throw new Exception("No se puede mover");
             }
             else
             {
+                remainingMovements -= steps;
                 currentPosition = theBoard.Move(currentPosition, steps, movementDir);
-                return remainingMovements > 0;
+                return remainingMovements == 0;
             }
 
         }
@@ -121,8 +121,8 @@ namespace Conqueror
         {
             int cityindex = theBoard.FindCityByName(cityName);
             //excepcion         
-            if (cityindex == -1 || theBoard.FindCityInDeck(currentPosition, cityindex))
-            { throw new Exception("error n-esimo"); }
+            if (cityindex == -1 || !theBoard.FindCityInDeck(currentPosition, cityindex))
+            { throw new Exception("Ciudad Erronea"); }
             else if (theBoard.AttackCity(cityindex, attackPoints))
             {
                 conqueredCities.InsertaFin(cityindex);

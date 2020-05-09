@@ -56,6 +56,7 @@ namespace Conqueror
         {
             nDecks = numDecks;
           decks = new Lista[nDecks];
+            for(int i = 0; i < nDecks; i++) { decks[i] = new Lista(); }
             nCities = maxCities;
             cities= new City[nCities];
         }
@@ -105,7 +106,7 @@ namespace Conqueror
                 {
                     if (cities[i].name == cityName) 
                     {
-                        decks[deckIndex] = new Lista();
+                        
                         decks[deckIndex].InsertaFin(i);
                         return true;
                     }

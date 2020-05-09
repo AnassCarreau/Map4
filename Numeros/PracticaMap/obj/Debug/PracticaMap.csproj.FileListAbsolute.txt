@@ -4,3 +4,10 @@ C:\Users\anass\source\repos\PracticaMap\bin\Debug\PracticaMap.exe
 C:\Users\anass\source\repos\PracticaMap\bin\Debug\PracticaMap.pdb
 C:\Users\anass\source\repos\PracticaMap\obj\Debug\PracticaMap.exe
 C:\Users\anass\source\repos\PracticaMap\obj\Debug\PracticaMap.pdb
+C:\Users\anass\Desktop\Map\Practica4\Map4\Numeros\PracticaMap\bin\Debug\PracticaMap.exe.config
+C:\Users\anass\Desktop\Map\Practica4\Map4\Numeros\PracticaMap\bin\Debug\PracticaMap.exe
+C:\Users\anass\Desktop\Map\Practica4\Map4\Numeros\PracticaMap\bin\Debug\PracticaMap.pdb
+C:\Users\anass\Desktop\Map\Practica4\Map4\Numeros\PracticaMap\obj\Debug\PracticaMap.csprojAssemblyReference.cache
+C:\Users\anass\Desktop\Map\Practica4\Map4\Numeros\PracticaMap\obj\Debug\PracticaMap.csproj.CoreCompileInputs.cache
+C:\Users\anass\Desktop\Map\Practica4\Map4\Numeros\PracticaMap\obj\Debug\PracticaMap.exe
+C:\Users\anass\Desktop\Map\Practica4\Map4\Numeros\PracticaMap\obj\Debug\PracticaMap.pdb

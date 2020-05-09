@@ -147,6 +147,26 @@ namespace Tests
             Lista l = new Lista();
 
             Assert.That(() => { l.N_esimo(1); },Throws.Exception, "Fallo:Hay elementos en la lista");
-        }    
+        }
+        [Test]
+        public void nEsimoNegativo()
+        {
+            Lista l = new Lista(5, 3);
+
+
+            Assert.That(() => { l.N_esimo(-1); }, Throws.Exception, "Fallo:Hay elementos en la lista");
+
+
+        }
+        [Test]
+        public void nEsimoMayorqueElem()
+        {
+            Lista l = new Lista(5, 3);
+
+
+            Assert.That(() => { l.N_esimo(20); }, Throws.Exception, "Fallo:Hay elementos en la lista");
+
+
+        }
     }
 }

@@ -10,3 +10,4 @@ C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Conqueror\bin\Debug\Conquero
 C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Conqueror\obj\Debug\Conqueror.csprojAssemblyReference.cache
 C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Conqueror\obj\Debug\Conqueror.exe
 C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Conqueror\obj\Debug\Conqueror.pdb
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Conqueror\obj\Debug\Conqueror.csproj.CoreCompileInputs.cache
