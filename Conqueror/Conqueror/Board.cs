@@ -179,9 +179,9 @@ namespace Conqueror
             }
 
             if (playerPosition < 0)
-            { playerPosition = (decks.Length - 1) + playerPosition; }
+            { playerPosition = decks.Length + playerPosition; }
             else if (playerPosition >= decks.Length)
-            { playerPosition = (decks.Length - 1) - playerPosition; }
+            { playerPosition = playerPosition - decks.Length; }
 
             return playerPosition;
         }
@@ -208,7 +208,7 @@ namespace Conqueror
         /// <returns>True si el ataque fue un éxito; false, en otro caso </returns>
         public bool AttackCity(int cityIndex, int attackPoints)
         {
-            return cities[cityIndex].defense< attackPoints;
+            return cities[cityIndex].defense < attackPoints;
         }
 
         /// <summary>

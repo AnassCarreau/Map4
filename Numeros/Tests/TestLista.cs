@@ -65,7 +65,7 @@ namespace Tests
             
             // Assert
             Assert.IsTrue(l.Esta(4), "Fallo: La operacion se ha producido");
-            // Act
+            // Assert
             Assert.IsTrue(l.BorraElto(4), "Fallo: La operacion se ha producido");
             // Assert
             Assert.IsFalse(l.Esta(4), "Fallo: La operacion se ha producido");
