@@ -61,6 +61,24 @@ namespace Conqueror
             cities= new City[nCities];
         }
 
+        #region Tests Board
+
+        public Board CrearBoardTest(Board boardTest)
+        {
+            boardTest.AddCity("Alejandretta", 4, 5);
+            boardTest.AddCity("Babilonia", 6, 10);
+            boardTest.AddCity("Troya", 2, 2);
+
+            boardTest.AddCityToDeck("Alejandretta", 0);
+            boardTest.AddCityToDeck("Troya", 0);
+            boardTest.AddCityToDeck("Troya", 1);
+            boardTest.AddCityToDeck("Alejandretta", 3);
+            boardTest.AddCityToDeck("Babilonia", 3);
+            return boardTest;
+        }
+
+        #endregion
+
         /// <summary>
         /// Intenta crear una carta de ciudad en el tablero
         /// </summary>

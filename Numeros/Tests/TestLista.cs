@@ -21,8 +21,6 @@ namespace Tests
             // Assert
             Assert.That(numElemLista,Is.EqualTo(6), "ERROR: Hay 6 elementos");
            //Is.EqualTo(numElemLista).Within(l.NumEltos());
-                
-            
         }
         [Test]
         public void CuentaEltosListaVacia()

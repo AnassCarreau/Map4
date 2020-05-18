@@ -9,48 +9,65 @@ using Conqueror;
 namespace Tests
 {
     [TestFixture]
-    public class Board
+    public class BoardTest
     {
         [Test]
         public void FindCityByNameExistente()
         {
+            //Arrange
+            Board b = new Board(10, 10);
+            //Act
+            b.CrearBoardTest(b);
+            int numName = b.FindCityByName("Troya");
+            //Assert
+            Assert.That(numName, Is.GreaterThan(-1), "ER");
         }
+
         [Test]
         public void FindCityByNameNoExistente()
         {
+            //Arrange 
+            Board b = new Board(10, 10);
+            //Act
+
         }
+
         [Test]
         public void FindCityByNameMayusculas()
         {
         }
+
         [Test]
         public void FindCityByNameMinusculas()
         {
-        }
 
+        }
 
         [Test]
         public void AttackCityExito()
         {
         }
+
         [Test]
         public void AttackCityFallo()
         {
         }
+
         [Test]
         public void AttackCityMismoAtaqueDefensa()
         {
         }
 
-
         [Test]
         public void RemoveCityFromDeckCiudadExistenteEnMazo()
         {
         }
+
         [Test]
         public void RemoveCityFromDeckCiudadNoExistenteEnMazo()
         {
         }
+
         [Test]
         public void RemoveCityFromDeckNumeroDeMazoNoExistente()
         {
@@ -60,19 +77,23 @@ namespace Tests
         public void MoveIzq()
         {
         }
+
         [Test]
         public void MoveIzqCiclico()
         {
         }
+
         [Test]
         public void MoveDer()
         {
         }
+
         [Test]
         public void MoveDerCiclico()
         {
         }
     }
+
     [TestFixture]
     public class Player
     {
