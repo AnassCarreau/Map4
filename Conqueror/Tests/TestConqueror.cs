@@ -181,6 +181,12 @@ namespace Tests
         [Test]
         public void MoveIzq()
         {
+            //Arrange
+            Player p = new Player(3, 2, 0);
+            //Act
+
+            //Assert
+
         }
         [Test]
         public void MoveIzqCiclico()
