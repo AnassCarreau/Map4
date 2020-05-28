@@ -56,7 +56,7 @@ namespace Conqueror
         public Board(int maxCities, int numDecks)
         {
             nDecks = numDecks;
-          decks = new Lista[nDecks];
+            decks = new Lista[nDecks];
             for(int i = 0; i < nDecks; i++) { decks[i] = new Lista(); }
             nCities = maxCities;
             cities= new City[nCities];
