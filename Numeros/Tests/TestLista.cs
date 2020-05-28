@@ -62,13 +62,12 @@ namespace Tests
         {
             // Arrange
             Lista l = new Lista(5, 1);
-            
             // Assert
-            Assert.IsTrue(l.Esta(4), "Fallo: La operacion se ha producido");
+            Assert.IsTrue(l.Esta(4), "ERROR: El elemento 4 existe");
+            // Act && Assert    
+            Assert.IsTrue(l.BorraElto(4), "ERROR: Se ha borrado el elemento ");
             // Assert
-            Assert.IsTrue(l.BorraElto(4), "Fallo: La operacion se ha producido");
-            // Assert
-            Assert.IsFalse(l.Esta(4), "Fallo: La operacion se ha producido");
+            Assert.IsFalse(l.Esta(4), "ERROR:  El elemento 4 no existe");
         } 
         [Test]
         public void BorraEltoNoExistente()
@@ -76,9 +75,9 @@ namespace Tests
             // Arrange
             Lista l = new Lista(3, 1);
             // Act
-            Assert.IsFalse(l.BorraElto(4), "Fallo: La operacion se ha producido");
+            Assert.IsFalse(l.BorraElto(4), "ERROR: La operacion se ha producido");
             // Assert
-            Assert.IsFalse(l.Esta(4), "Fallo: La operacion se ha producido");
+            Assert.IsFalse(l.Esta(4), "ERROR: La operacion se ha producido");
         }
         [Test]
         public void BorraEltoFinal()
@@ -87,11 +86,11 @@ namespace Tests
             Lista l = new Lista(5, 1);
 
             // Assert
-            Assert.IsTrue(l.Esta(5), "Fallo: La operacion se ha producido");
+            Assert.IsTrue(l.Esta(5), "ERROR: La operacion se ha producido");
             // Act
-            Assert.IsTrue(l.BorraElto(5), "Fallo: La operacion se ha producido");
+            Assert.IsTrue(l.BorraElto(5), "ERROR: La operacion se ha producido");
             // Assert
-            Assert.IsFalse(l.Esta(5), "Fallo: La operacion se ha producido");
+            Assert.IsFalse(l.Esta(5), "ERROR: La operacion se ha producido");
         }
         [Test]
         public void BorraEltoPrincipio()
@@ -100,11 +99,11 @@ namespace Tests
             Lista l = new Lista(5, 1);
 
             // Assert
-            Assert.IsTrue(l.Esta(1), "Fallo: La operacion se ha producido");
+            Assert.IsTrue(l.Esta(1), "ERROR: La operacion se ha producido");
             // Act
-            Assert.IsTrue(l.BorraElto(1), "Fallo: La operacion se ha producido");
+            Assert.IsTrue(l.BorraElto(1), "ERROR: La operacion se ha producido");
             // Assert
-            Assert.IsFalse(l.Esta(1), "Fallo: La operacion se ha producido");
+            Assert.IsFalse(l.Esta(1), "ERROR: La operacion se ha producido");
         }
         [Test]
         public void BorraEltoListaVacia()
@@ -112,9 +111,9 @@ namespace Tests
             // Arrange
             Lista l = new Lista();
             // Act
-            Assert.IsFalse(l.BorraElto(0), "Fallo: La operacion se ha producido");
+            Assert.IsFalse(l.BorraElto(0), "ERROR: La operacion se ha producido");
             // Assert
-            Assert.IsFalse(l.Esta(0), "Fallo: La operacion se ha producido");
+            Assert.IsFalse(l.Esta(0), "ERROR: La operacion se ha producido");
         }
         [Test]
         public void BorraEltoUnico()
@@ -122,9 +121,34 @@ namespace Tests
             // Arrange
             Lista l = new Lista(1,1);
             // Act
-            Assert.IsTrue(l.BorraElto(1), "Fallo: La operacion se ha producido");
+            Assert.IsTrue(l.BorraElto(1), "ERROR: La operacion se ha producido");
             // Assert
-            Assert.That(l.NumEltos(),Is.EqualTo(0), "Fallo: La operacion se ha producido");
+            Assert.That(l.NumEltos(),Is.EqualTo(0), "ERROR: La operacion se ha producido");
+        }
+        public void BorraEltoRepetido()
+        {
+            // Arrange
+            Lista p = new Lista(3, 2);
+            // Act           
+            Assert.IsTrue(l.BorraElto(3), "ERROR: La operacion se ha producido");
+            Assert.That(l.NumEltos(), Is.EqualTo(5), "ERROR: La operacion se ha producido");
+            Assert.IsTrue(l.Esta(3), "ERROR: La operacion se ha producido");
+
+        }
+        public void BorraEltoRepetidoVarias()
+        {
+            // Arrange
+            Lista p = new Lista(3, 3);
+            // Act      
+            int num;
+            while (l.Esta(3))
+            { 
+                l.BorraElto(3);
+                num++;
+            } 
+            Assert.That(l.NumEltos(), Is.EqualTo(9-num), "ERROR: La operacion se ha producido");
+            Assert.IsFalse(l.Esta(3), "ERROR: La operacion se ha producido");
+
         }
 
         [Test]
@@ -133,9 +157,9 @@ namespace Tests
             Lista l = new Lista(5, 3);
 
             
-            Assert.That(5,Is.EqualTo( l.N_esimo(14)), "Fallo: El elemento numero 13 es un 4");
-            Assert.That(1,Is.EqualTo( l.N_esimo(0)), "Fallo: El elemento numero 13 es un 4");
-            Assert.That(2,Is.EqualTo( l.N_esimo(6)), "Fallo: El elemento numero 13 es un 4");
+            Assert.That(5,Is.EqualTo( l.N_esimo(14)), "ERROR: El elemento numero 13 es un 4");
+            Assert.That(1,Is.EqualTo( l.N_esimo(0)), "ERROR: El elemento numero 13 es un 4");
+            Assert.That(2,Is.EqualTo( l.N_esimo(6)), "ERROR: El elemento numero 13 es un 4");
 
         }
         [Test]
@@ -144,7 +168,7 @@ namespace Tests
             // Arrange
             Lista l = new Lista();
 
-            Assert.That(() => { l.N_esimo(1); },Throws.Exception, "Fallo:Hay elementos en la lista");
+            Assert.That(() => { l.N_esimo(1); },Throws.Exception, "ERROR:Hay elementos en la lista");
         }
         [Test]
         public void nEsimoNegativo()
@@ -152,7 +176,7 @@ namespace Tests
             Lista l = new Lista(5, 3);
 
 
-            Assert.That(() => { l.N_esimo(-1); }, Throws.Exception, "Fallo:Hay elementos en la lista");
+            Assert.That(() => { l.N_esimo(-1); }, Throws.Exception, "ERROR:Hay elementos en la lista");
 
 
         }
@@ -162,9 +186,42 @@ namespace Tests
             Lista l = new Lista(5, 3);
 
 
-            Assert.That(() => { l.N_esimo(20); }, Throws.Exception, "Fallo:Hay elementos en la lista");
+            Assert.That(() => { l.N_esimo(20); }, Throws.Exception, "ERROR:Hay elementos en la lista");
 
 
+        }
+        [Test]
+        public void nEsimoUltimo()
+        {
+            // Arrange
+            Lista r = new Lista(8, 1);
+            int posicion = 7;
+            // Act
+            int valor = r.nEsimo(posicion);
+            // Assert
+            Assert.That(valor, Is.EqualTo(posicion + 1), "ERROR: nEsimo(0) en lista no devuelve valor 8");
+        }
+        [Test]
+        public void nEsimoRep()
+        {
+            // Arrange
+            Lista r = new Lista(4, 3);
+            int posicion = 7;
+            // Act
+            int valor = r.nEsimo(posicion);
+            // Assert
+            Assert.That(valor, Is.EqualTo(4), "ERROR: nEsimo(0) en lista no devuelve valor 8");
+        }
+        [Test]
+        public void nEsimoPrimero()
+        {
+            // Arrange
+            Lista r = new Lista(3, 2);
+            int posicion = 0;
+            // Act
+            int valor = r.nEsimo(posicion);
+            // Assert
+            Assert.That(valor, Is.EqualTo(1), "ERROR: nEsimo(0) en lista no devuelve valor 1");
         }
     }
 }
