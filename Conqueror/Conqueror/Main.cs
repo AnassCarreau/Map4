@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Conqueror
 {
-    class MainClass
+    public class MainClass
     {
         /// <summary>
         /// Punto de entrada a la aplicación
@@ -14,6 +14,7 @@ namespace Conqueror
             // Construcción del tablero y del jugador
             //Board theBoard = InitBoard(3, 5);
             Board theBoard = ReadMap("Board.dat");
+
             
             Player thePlayer = new Player(4, 10, 0);
 

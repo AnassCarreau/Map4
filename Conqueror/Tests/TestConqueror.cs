@@ -387,37 +387,94 @@ namespace Tests
         [Test]
         public void ReadMapArchivoEncontrado()
         {
+            //Assert
+            Assert.That(() => { MainClass.ReadMap("Board.dat"); }, Throws.Exception, "ERROR: ");
         }
+
         [Test]
         public void ReadMapArchivoNoEncontrado()
         {
+            //Assert
+            Assert.That(() => { MainClass.ReadMap("Hola"); }, Throws.Exception, "ERROR: ");
         }
+
         [Test]
         public void ReadMapArchivoFormatoCorrecto()
         {
+            //Assert 
+            
         }
+
         [Test]
         public void ReadMapArchivoFormatoInCorrecto()
         {
         }
 
         [Test]
-        public void CreateCityCorrecto()
+        public void CreateCityAñadido()
         {
-        }
-        [Test]
-        public void CreateCityIncorrecto()
-        {
-        }
-        [Test]
-        public void CreateCityinDeckCorrecto()
-        {
+            //Arrange
+            Board b = new Board(10, 10);
 
-        }
-        [Test]
-        public void CreateCityinDeckInCorrecto()
-        {
+            //Act
 
+            //Assert
+            Assert.IsTrue(b.CreateCity("city Troya 2 2"), "ERROR: ");
+            Assert.IsTrue(b.CreateCity("city Madrid 5 5"), "ERROR: ");
+        }
+
+        [Test]
+        public void CreateCityNoAñadido()
+        {
+            //Arrange
+            Board b = new Board(1, 1);
+
+            //Act
+            b.CreateCity("city Barcelona 4 4");
+            //Assert
+            Assert.IsFalse(b.CreateCity("city Troya 2 2"), "ERROR: ");
+           // Assert.IsFalse(b.CreateCity("city 5 Madrid 5"), "ERROR: ");
+        }
+
+        public void CreateCityMalFormato()
+        {
+            //Arrange
+            Board b = new Board(10, 10);
+            //Assert
+            Assert.That(() => { b.CreateCity("city 7 7 Hola"); }, Throws.Exception , "ERROR: el formato de entrada no es correcto");
+        }
+
+        public void CreateCityinDeckAñadido()
+        {
+            //Arrange
+            Board b = new Board(10, 10);
+
+            //Act
+
+            //Assert
+            Assert.IsTrue(b.CreateCityinDeck("deck 0 Alejandretta"), "ERROR: ");
+            Assert.IsTrue(b.CreateCityinDeck("deck 5 Madrid"), "ERROR: ");
+        }
+
+        [Test]
+        public void CreateCityinDeckNoAñadido()
+        {
+            //Arrange
+            Board b = new Board(1, 1);
+
+            //Act
+            b.CreateCityinDeck("deck 0 Alejandretta");
+            //Assert
+            Assert.IsFalse(b.CreateCityinDeck("deck 5 Madrid"), "ERROR: ");
+            // Assert.IsFalse(b.CreateCity("city 5 Madrid 5"), "ERROR: ");
+        }
+
+        public void CreateCityinDeckMalFormato()
+        {
+            //Arrange
+            Board b = new Board(10, 10);
+            //Assert
+            Assert.That(() => { b.CreateCity("city 7 7 Hola"); }, Throws.Exception, "ERROR: el formato de entrada no es correcto");
         }
     }
 }

@@ -295,6 +295,7 @@ namespace Conqueror
             string[] auxiliar = l.Split(' ');
             return AddCityToDeck(auxiliar[2], int.Parse(auxiliar[1]));
         }
-        
+
+
     }
 }
