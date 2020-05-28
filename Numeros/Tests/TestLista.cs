@@ -130,17 +130,17 @@ namespace Tests
             // Arrange
             Lista p = new Lista(3, 2);
             // Act           
-            Assert.IsTrue(l.BorraElto(3), "ERROR: La operacion se ha producido");
-            Assert.That(l.NumEltos(), Is.EqualTo(5), "ERROR: La operacion se ha producido");
-            Assert.IsTrue(l.Esta(3), "ERROR: La operacion se ha producido");
+            Assert.IsTrue(p.BorraElto(3), "ERROR: La operacion se ha producido");
+            Assert.That(p.NumEltos(), Is.EqualTo(5), "ERROR: La operacion se ha producido");
+            Assert.IsTrue(p.Esta(3), "ERROR: La operacion se ha producido");
 
         }
         public void BorraEltoRepetidoVarias()
         {
             // Arrange
-            Lista p = new Lista(3, 3);
+            Lista l = new Lista(3, 3);
             // Act      
-            int num;
+            int num=0;
             while (l.Esta(3))
             { 
                 l.BorraElto(3);
@@ -197,7 +197,7 @@ namespace Tests
             Lista r = new Lista(8, 1);
             int posicion = 7;
             // Act
-            int valor = r.nEsimo(posicion);
+            int valor = r.N_esimo(posicion);
             // Assert
             Assert.That(valor, Is.EqualTo(posicion + 1), "ERROR: nEsimo(0) en lista no devuelve valor 8");
         }
@@ -208,7 +208,7 @@ namespace Tests
             Lista r = new Lista(4, 3);
             int posicion = 7;
             // Act
-            int valor = r.nEsimo(posicion);
+            int valor = r.N_esimo(posicion);
             // Assert
             Assert.That(valor, Is.EqualTo(4), "ERROR: nEsimo(0) en lista no devuelve valor 8");
         }
@@ -219,7 +219,7 @@ namespace Tests
             Lista r = new Lista(3, 2);
             int posicion = 0;
             // Act
-            int valor = r.nEsimo(posicion);
+            int valor = r.N_esimo(posicion);
             // Assert
             Assert.That(valor, Is.EqualTo(1), "ERROR: nEsimo(0) en lista no devuelve valor 1");
         }

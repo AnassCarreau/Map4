@@ -176,77 +176,208 @@ namespace Tests
     }
 
     [TestFixture]
-    public class Player
+    public class PlayerTest
     {
         [Test]
         public void MoveIzq()
         {
             //Arrange
-            Player p = new Player(3, 2, 0);
+            Player p = new Player(3, 3, 3);
+            Board b = new Board(10, 10);
+            int pos;
             //Act
-
+            p.Move(b, 1, Direction.Left);
+            pos = p.GetPosition();
             //Assert
-
+            Assert.That(pos, Is.EqualTo(2), "ERROR:");
         }
+
         [Test]
         public void MoveIzqCiclico()
         {
+            //Arrange
+            Player p = new Player(4, 3, 3);
+            Board b = new Board(10, 10);
+            int pos;
+            //Act
+            p.Move(b, 4, Direction.Left);
+            pos = p.GetPosition();
+            //Assert
+            Assert.That(pos, Is.EqualTo(9), "ERROR:");
         }
+
         [Test]
         public void MoveDer()
         {
+            //Arrange
+            Player p = new Player(3, 3, 3);
+            Board b = new Board(10, 10);
+            int pos;
+            //Act
+            p.Move(b, 1, Direction.Right);
+            pos = p.GetPosition();
+            //Assert
+            Assert.That(pos, Is.EqualTo(4), "ERROR:");
         }
+
         [Test]
         public void MoveDerCiclico()
         {
+            //Arrange
+            Player p = new Player(5, 0, 9);
+            Board b = new Board(10, 10);
+            int pos;
+            //Act
+            p.Move(b, 4, Direction.Right);
+            pos = p.GetPosition();
+            //Assert
+            Assert.That(pos, Is.EqualTo(3), "ERROR:");
         }
+
         [Test]
         public void MoveValorNegativo()
         {
+            //Arrange
+            Player player = new Player(5, 0, 9);
+            Board board = new Board(10, 10);
+            
+            //Assert
+            Assert.That(() => { player.Move(board, -6, Direction.Left); }, Throws.Exception, "ERROR: No salta la excepcion");
+            Assert.That(() => { player.Move(board, -1, Direction.Right); }, Throws.Exception, "ERROR: No salta la excepcion");
         }
+
         [Test]
         public void MoveMayorQueRestantes()
         {
+            //Arrange
+            Player player = new Player(5, 0, 9);
+            Board board = new Board(10, 10);
+
+            //Act
+            board.CrearBoardTest(board);
+
+            //Assert
+            Assert.That(() => { player.Move(board, 6, Direction.Left); }, Throws.Exception, "ERROR: No salta la excepcion");
+            Assert.That(() => { player.Move(board, 9, Direction.Right); }, Throws.Exception, "ERROR: No salta la excepcion");
         }
+
         [Test]
         public void MoveAgotarMovimientos()
         {
+            //Arrange
+            Player player = new Player(5, 0, 9);
+            Board board = new Board(10, 10);
+
+            //Act
+            board.CrearBoardTest(board);
+
+            //Assert
+            Assert.IsTrue(player.Move(board, 5, Direction.Right), "ERROR:");
         }
+
         [Test]
         public void MoveQuedanMovimientos()
         {
+            //Arrange
+            Player player = new Player(5, 0, 9);
+            Board board = new Board(10, 10);
+
+            //Act
+            board.CrearBoardTest(board);
+
+            //Assert
+            Assert.IsFalse(player.Move(board, 4, Direction.Right), "ERROR:");
         }
 
 
         [Test]
         public void ComputePlayerPoints()
         {
+            //Arrange
+            Player player = new Player(5, 9, 0);
+            Board board = new Board(10, 10);
+            int puntos = 0;
+
+            //Act
+            board.CrearBoardTest(board);
+            player.AttackCity(board, "Alejandretta");
+            player.AttackCity(board, "Troya");
+            puntos = player.ComputePlayerPoints(board);
+            //Assert
+            Assert.That(puntos, Is.EqualTo(7), "ERROR: El metodo no recoge bien los puntos de conquista");
         }
+
         [Test]
         public void ComputePlayerPointsSinConquistas()
         {
+            //Arrange
+            Player player = new Player(5, 9, 0);
+            Board board = new Board(10, 10);
+            int puntos; 
+
+            //Act
+            board.CrearBoardTest(board);
+            puntos = player.ComputePlayerPoints(board);
+
+            //Assert
+            Assert.That(puntos, Is.EqualTo(0), "ERROR: no recoge bien los puntos de conquista al ser 0");
         }
 
 
         [Test]
         public void AttackCityExito()
         {
+            //Arrange
+            Player player = new Player(5, 9, 0);
+            Board board = new Board(10, 10);
 
+            //Act
+            board.CrearBoardTest(board);
+
+            //Assert
+            Assert.IsTrue(player.AttackCity(board, "Alejandretta"), "ERROR: ");
         }
+
         [Test]
         public void AttackCityFracaso()
         {
+            //Arrange
+            Player player = new Player(5, 0, 0);
+            Board board = new Board(10, 10);
 
+            //Act
+            board.CrearBoardTest(board);
+
+            //Assert
+            Assert.IsFalse(player.AttackCity(board, "Alejandretta"), "ERROR: ");
         }
+
         [Test]
         public void AttackCityNoExistente()
         {
+            //Arrange
+            Player player = new Player(5, 0, 0);
+            Board board = new Board(10, 10);
 
+            //Act
+            board.CrearBoardTest(board);
+
+            //Assert
+            Assert.That(() => { player.AttackCity(board, "Madrid"); }, Throws.Exception, "ERROR: No salta la excepcion");
         }
+
         [Test]
         public void AttackCityCiudadInexistenteEnMazo()
         {
+            //Arrange
+            Player player = new Player(5, 0, 0);
+            Board board = new Board(10, 10);
 
+            //Act
+            board.CrearBoardTest(board);
+
+            //Assert
+            Assert.That(() => { player.AttackCity(board, "Babilonia"); }, Throws.Exception, "ERROR: No salta la excepcion");
         }
     }
     [TestFixture]

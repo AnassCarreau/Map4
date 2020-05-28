@@ -64,6 +64,13 @@ namespace Conqueror
         /// si el número de movimientos es un valor negativo,
         /// o si el número de movimientos que quiere hacer es mayor que
         /// el número de movimientos que le quedan al jugador</exception>
+        /// 
+
+        #region testPlayer
+
+
+        #endregion
+
         public bool Move(Board theBoard, int steps, Direction movementDir)
         {
             if (steps < 0 || remainingMovements < steps)
