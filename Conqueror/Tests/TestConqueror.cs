@@ -20,7 +20,7 @@ namespace Tests
             b.CrearBoardTest(b);
             int numName = b.FindCityByName("Troya");
             //Assert
-            Assert.That(numName, Is.GreaterThan(-1), "ERROR:");
+            Assert.That(numName, Is.GreaterThan(-1), "ERROR: el nombre de la ciudad no existe");
         }
 
         [Test]
@@ -32,7 +32,7 @@ namespace Tests
             b.CrearBoardTest(b);
             int numName = b.FindCityByName("Madrid");
             //Assert
-            Assert.That(numName, Is.EqualTo(-1), "ERROR:");
+            Assert.That(numName, Is.EqualTo(-1), "ERROR: el nombre de la ciudad si existe");
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace Tests
             b.CrearBoardTest(b);
             int numName = b.FindCityByName("TROYA");
             //Assert
-            Assert.That(numName, Is.EqualTo(-1), "ERROR:");
+            Assert.That(numName, Is.EqualTo(-1), "ERROR: el nombre de la ciudad esta escrito en mayusculas");
 
         }
 
@@ -57,7 +57,7 @@ namespace Tests
             b.CrearBoardTest(b);
             int numName = b.FindCityByName("troya");
             //Assert
-            Assert.That(numName, Is.EqualTo(-1), "ERROR:");
+            Assert.That(numName, Is.EqualTo(-1), "ERROR: el nombre de la ciudad esta escrito en minusculas");
         }
 
         [Test]
@@ -68,7 +68,7 @@ namespace Tests
             //Act
             b.CrearBoardTest(b);
             //Assert
-            Assert.IsTrue(b.AttackCity(0,5), "ERROR:");
+            Assert.IsTrue(b.AttackCity(0,5), "ERROR: No se ha podido atacar a la ciudad");
         }
 
         [Test]
@@ -79,7 +79,7 @@ namespace Tests
             //Act
             b.CrearBoardTest(b);
             //Assert
-            Assert.IsFalse(b.AttackCity(0, 3), "ERROR:");
+            Assert.IsFalse(b.AttackCity(0, 3), "ERROR: Se ataco a la ciudad con exito");
         }
 
         [Test]
@@ -90,7 +90,7 @@ namespace Tests
             //Act
             b.CrearBoardTest(b);
             //Assert
-            Assert.IsFalse(b.AttackCity(0, 4), "ERROR:");
+            Assert.IsFalse(b.AttackCity(0, 4), "ERROR: el ataque no fue el mismo que la defensa de la torre");
         }
 
         [Test]
@@ -101,7 +101,7 @@ namespace Tests
             //Act
             b.CrearBoardTest(b);
             //Assert
-            Assert.IsTrue(b.RemoveCityFromDeck(0, 0), "ERROR:");
+            Assert.IsTrue(b.RemoveCityFromDeck(0, 0), "ERROR: La ciudad no esta en ningun mazo del tablero");
         }
 
         [Test]
@@ -112,7 +112,7 @@ namespace Tests
             //Act
             b.CrearBoardTest(b);
             //Assert
-            Assert.IsFalse(b.RemoveCityFromDeck(0, 1), "ERROR:");
+            Assert.IsFalse(b.RemoveCityFromDeck(0, 1), "ERROR: La ciudad existe en uno de los mazos del tablero");
         }
 
         [Test]
@@ -123,7 +123,7 @@ namespace Tests
             //Act
             b.CrearBoardTest(b);
             //Assert
-            Assert.IsFalse(b.RemoveCityFromDeck(9, 0), "ERROR:");
+            Assert.IsFalse(b.RemoveCityFromDeck(9, 0), "ERROR: El mazo existe en el tablero");
         }
 
         [Test]
@@ -135,7 +135,7 @@ namespace Tests
             b.CrearBoardTest(b);
             int numPos = b.Move(9, 2, Direction.Left);
             //Assert
-            Assert.That(numPos, Is.EqualTo(7),"ERROR:");
+            Assert.That(numPos, Is.EqualTo(7),"ERROR: no te mueves correctamente a la izquierda");
         }
 
         [Test]
@@ -147,7 +147,7 @@ namespace Tests
             b.CrearBoardTest(b);
             int numPos = b.Move(0, 2, Direction.Left);
             //Assert
-            Assert.That(numPos, Is.EqualTo(8), "ERROR:");
+            Assert.That(numPos, Is.EqualTo(8), "ERROR: no se hace correctamente el movimiento ciclico a la izquierda");
         }
 
         [Test]
@@ -159,7 +159,7 @@ namespace Tests
             b.CrearBoardTest(b);
             int numPos = b.Move(7, 1, Direction.Right);
             //Assert
-            Assert.That(numPos, Is.EqualTo(8), "ERROR:");
+            Assert.That(numPos, Is.EqualTo(8), "ERROR: no te mueves correctamente a la derecha");
         }
 
         [Test]
@@ -171,7 +171,7 @@ namespace Tests
             b.CrearBoardTest(b);
             int numPos = b.Move(9, 2, Direction.Right);
             //Assert
-            Assert.That(numPos, Is.EqualTo(1), "ERROR:");
+            Assert.That(numPos, Is.EqualTo(1), "ERROR: no se hace correctamente el movimiento ciclico a la derecha");
         }
     }
 
@@ -189,7 +189,7 @@ namespace Tests
             p.Move(b, 1, Direction.Left);
             pos = p.GetPosition();
             //Assert
-            Assert.That(pos, Is.EqualTo(2), "ERROR:");
+            Assert.That(pos, Is.EqualTo(2), "ERROR: el player no se mueve correctamente a la izquierda");
         }
 
         [Test]
@@ -203,7 +203,7 @@ namespace Tests
             p.Move(b, 4, Direction.Left);
             pos = p.GetPosition();
             //Assert
-            Assert.That(pos, Is.EqualTo(9), "ERROR:");
+            Assert.That(pos, Is.EqualTo(9), "ERROR: el player no se mueve correctamente a la izquierda de forma ciclica");
         }
 
         [Test]
@@ -217,7 +217,7 @@ namespace Tests
             p.Move(b, 1, Direction.Right);
             pos = p.GetPosition();
             //Assert
-            Assert.That(pos, Is.EqualTo(4), "ERROR:");
+            Assert.That(pos, Is.EqualTo(4), "ERROR: el player no se mueve correctamente a la derecha");
         }
 
         [Test]
@@ -231,7 +231,7 @@ namespace Tests
             p.Move(b, 4, Direction.Right);
             pos = p.GetPosition();
             //Assert
-            Assert.That(pos, Is.EqualTo(3), "ERROR:");
+            Assert.That(pos, Is.EqualTo(3), "ERROR: el player no se mueve correctamente a la derecha de forma ciclica");
         }
 
         [Test]
@@ -242,8 +242,8 @@ namespace Tests
             Board board = new Board(10, 10);
             
             //Assert
-            Assert.That(() => { player.Move(board, -6, Direction.Left); }, Throws.Exception, "ERROR: No salta la excepcion");
-            Assert.That(() => { player.Move(board, -1, Direction.Right); }, Throws.Exception, "ERROR: No salta la excepcion");
+            Assert.That(() => { player.Move(board, -6, Direction.Left); }, Throws.Exception, "ERROR: No salta la excepcion de numero de pasos negativos");
+            Assert.That(() => { player.Move(board, -1, Direction.Right); }, Throws.Exception, "ERROR: No salta la excepcion de numero de pasos negativos");
         }
 
         [Test]
@@ -257,8 +257,8 @@ namespace Tests
             board.CrearBoardTest(board);
 
             //Assert
-            Assert.That(() => { player.Move(board, 6, Direction.Left); }, Throws.Exception, "ERROR: No salta la excepcion");
-            Assert.That(() => { player.Move(board, 9, Direction.Right); }, Throws.Exception, "ERROR: No salta la excepcion");
+            Assert.That(() => { player.Move(board, 6, Direction.Left); }, Throws.Exception, "ERROR: No salta la excepcion de pasos mayor que los pasos posibles del player");
+            Assert.That(() => { player.Move(board, 9, Direction.Right); }, Throws.Exception, "ERROR: No salta la excepcion de pasos mayor que los pasos posibles del player");
         }
 
         [Test]
@@ -272,7 +272,7 @@ namespace Tests
             board.CrearBoardTest(board);
 
             //Assert
-            Assert.IsTrue(player.Move(board, 5, Direction.Right), "ERROR:");
+            Assert.IsTrue(player.Move(board, 5, Direction.Right), "ERROR: el movimiento del player max no se ha agotado");
         }
 
         [Test]
@@ -286,7 +286,7 @@ namespace Tests
             board.CrearBoardTest(board);
 
             //Assert
-            Assert.IsFalse(player.Move(board, 4, Direction.Right), "ERROR:");
+            Assert.IsFalse(player.Move(board, 4, Direction.Right), "ERROR: no quedan movimientos en el player");
         }
 
 
@@ -335,7 +335,7 @@ namespace Tests
             board.CrearBoardTest(board);
 
             //Assert
-            Assert.IsTrue(player.AttackCity(board, "Alejandretta"), "ERROR: ");
+            Assert.IsTrue(player.AttackCity(board, "Alejandretta"), "ERROR: no se ataco la ciudad con exito");
         }
 
         [Test]
@@ -349,7 +349,7 @@ namespace Tests
             board.CrearBoardTest(board);
 
             //Assert
-            Assert.IsFalse(player.AttackCity(board, "Alejandretta"), "ERROR: ");
+            Assert.IsFalse(player.AttackCity(board, "Alejandretta"), "ERROR: se ataco a la ciudad con exito");
         }
 
         [Test]
@@ -363,7 +363,7 @@ namespace Tests
             board.CrearBoardTest(board);
 
             //Assert
-            Assert.That(() => { player.AttackCity(board, "Madrid"); }, Throws.Exception, "ERROR: No salta la excepcion");
+            Assert.That(() => { player.AttackCity(board, "Madrid"); }, Throws.Exception, "ERROR: No salta la excepcion de ciudad no existente");
         }
 
         [Test]
@@ -377,7 +377,7 @@ namespace Tests
             board.CrearBoardTest(board);
 
             //Assert
-            Assert.That(() => { player.AttackCity(board, "Babilonia"); }, Throws.Exception, "ERROR: No salta la excepcion");
+            Assert.That(() => { player.AttackCity(board, "Babilonia"); }, Throws.Exception, "ERROR: No salta la excepcion de ciudad inexistente en mazo");
         }
     }
     [TestFixture]
