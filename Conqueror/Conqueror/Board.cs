@@ -28,7 +28,7 @@ namespace Conqueror
         /// <summary>
         /// El array de ciudades diferentes que hay en el juego
         /// </summary>
-        City [] cities;
+        City[] cities;
 
         /// <summary>
         /// Número total de ciudades diferentes que hay en el juego
@@ -40,7 +40,7 @@ namespace Conqueror
         /// en el juego. Casa mazo se compone de una lista de enteros que
         /// apuntan a las ciudades guardadas en cities
         /// </summary>
-        Lista [] decks;
+        Lista[] decks;
 
         /// <summary>
         /// Número total de mazos que hay en la secuencia de mazos
@@ -57,9 +57,9 @@ namespace Conqueror
         {
             nDecks = numDecks;
             decks = new Lista[nDecks];
-            for(int i = 0; i < nDecks; i++) { decks[i] = new Lista(); }
+            for (int i = 0; i < nDecks; i++) { decks[i] = new Lista(); }
             nCities = maxCities;
-            cities= new City[nCities];
+            cities = new City[nCities];
         }
 
         #region Tests Board
@@ -91,12 +91,12 @@ namespace Conqueror
         /// </returns>
         public bool AddCity(string cityName, int cityDefense, int cityPoints)
         {
-            if (cities[cities.Length-1].name == null) 
+            if (cities[cities.Length - 1].name == null)
             {
                 int i = 0;
-                while (i < cities.Length) 
+                while (i < cities.Length)
                 {
-                   if(cities[i].name == null)
+                    if (cities[i].name == null)
                     {
                         cities[i].name = cityName;
                         cities[i].defense = cityDefense;
@@ -106,7 +106,7 @@ namespace Conqueror
                     i++;
                 }
             }
-             return false;
+            return false;
         }
 
         /// <summary>
@@ -119,13 +119,14 @@ namespace Conqueror
         /// </returns>
         public bool AddCityToDeck(string cityName, int deckIndex)
         {
-            if (deckIndex < nDecks) 
-            { int i = 0;
-                while (i < cities.Length) 
+            if (deckIndex < nDecks)
+            {
+                int i = 0;
+                while (i < cities.Length)
                 {
-                    if (cities[i].name == cityName) 
+                    if (cities[i].name == cityName)
                     {
-                        
+
                         decks[deckIndex].InsertaFin(i);
                         return true;
                     }
@@ -144,9 +145,9 @@ namespace Conqueror
         /// (o 0, si no hay ciudades en ese mazo).</returns>
         public int ComputeDefensePointsInDeck(int deckIndex)
         {
-            int suma =0;
+            int suma = 0;
             int cityIndex;
-            for (int i = 0; i < decks[deckIndex].NumEltos(); i++) 
+            for (int i = 0; i < decks[deckIndex].NumEltos(); i++)
             {
                 cityIndex = decks[deckIndex].N_esimo(i);
                 suma += cities[cityIndex].defense;
@@ -220,7 +221,7 @@ namespace Conqueror
         /// <returns>True, si la ciudad ha sido eliminada; false, en otro caso (el
         /// número de mazo no existe o la ciudad indicada no aparece en el mazo)</returns>
         public bool RemoveCityFromDeck(int deckIndex, int cityIndex)
-        {   
+        {
             return decks[deckIndex].BorraElto(cityIndex);
         }
 
@@ -235,17 +236,17 @@ namespace Conqueror
         public int FindCityByName(string cityName)
         {
             int i = 0;
-            while (i < cities.Length ) 
+            while (i < cities.Length)
             {
-                if (cities[i].name == cityName) 
+                if (cities[i].name == cityName)
                 {
                     return i;
                 }
                 i++;
             }
-            return -1 ;
+            return -1;
         }
-        public bool FindCityInDeck(int deckIndex, int cityIndex) 
+        public bool FindCityInDeck(int deckIndex, int cityIndex)
         {
             return decks[deckIndex].Esta(cityIndex);
         }
@@ -257,14 +258,14 @@ namespace Conqueror
         public string ShowDeck(int deckIndex)
         {
             string result = "";
-            if (decks[deckIndex].NumEltos()==0)
+            if (decks[deckIndex].NumEltos() == 0)
             {
                 result = "This deck is empty";
             }
             else
             {
-                result = "Cities in this deck: "+ Environment.NewLine;
-                for (int i=0; i< decks[deckIndex].NumEltos(); i++)
+                result = "Cities in this deck: " + Environment.NewLine;
+                for (int i = 0; i < decks[deckIndex].NumEltos(); i++)
                 {
                     int cityIndex = decks[deckIndex].N_esimo(i);
                     result += (cities[cityIndex].name) + Environment.NewLine;
@@ -284,59 +285,16 @@ namespace Conqueror
             return decks[deckIndex].NumEltos();
         }
 
-        public void CreateCity(string l) 
+        public bool CreateCity(string l)
         {
             string[] auxiliar = l.Split(' ');
-            AddCity(auxiliar[1], int.Parse(auxiliar[2]), int.Parse(auxiliar[3]));
+            return AddCity(auxiliar[1], int.Parse(auxiliar[2]), int.Parse(auxiliar[3]));
         }
-        public void CreateCityinDeck(string l)
+        public bool CreateCityinDeck(string l)
         {
             string[] auxiliar = l.Split(' ');
-            AddCityToDeck(auxiliar[1], int.Parse(auxiliar[2]));
+            return AddCityToDeck(auxiliar[2], int.Parse(auxiliar[1]));
         }
-        public void ReadMap(string file)
-        {
-            string linea;
-            string[] citiesString=new string[100];
-            string[] decksString=new string[100];
-            int numcities=0;
-            int numdecks = 0;
-
-            // Lectura de la lina con este string
-            StreamReader lectura = new StreamReader(file);  // lector de archivo"file"
-            while (lectura.EndOfStream == false)            // Hasta el final de la lectura del archivo
-            {
-                linea = lectura.ReadLine(); // Lectura de linea
-                try
-                {
-                    if (linea.StartsWith("city"))  // Habitaciones
-                    {
-                        citiesString[numcities] = linea;
-                        numcities++;
-                    }
-                    else if (linea.StartsWith("deck")) //Conexiones
-                    {
-                        numdecks = (int)linea[5];
-                        decksString[numdecks] = linea;
-
-                    }
-                    else if (linea == ("") || linea.StartsWith("#")) ;
-                }
-                catch (Exception e)
-                {
-                    Console.Write(e.Message);
-                }
-            }
-            Board b=new Board(numcities,numdecks);
-            for(int i=0;i< numcities; i++) 
-            {
-                CreateCity(citiesString[i]);
-            }
-            for(int i=0;i< numdecks; i++) 
-            {
-                CreateCityinDeck(decksString[i]);
-            }
-
-        }
+        
     }
 }

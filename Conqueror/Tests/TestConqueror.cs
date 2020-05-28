@@ -39,7 +39,7 @@ namespace Tests
         public void FindCityByNameMayusculas()
         {
             //Arrange
-            Board b = new Board(10,10);
+            Board b = new Board(10, 10);
             //Act
             b.CrearBoardTest(b);
             int numName = b.FindCityByName("TROYA");
@@ -64,7 +64,7 @@ namespace Tests
         public void AttackCityExito()
         {
             //Arrange
-            Board b = new Board(10,10);
+            Board b = new Board(10, 10);
             //Act
             b.CrearBoardTest(b);
             //Assert
@@ -97,7 +97,7 @@ namespace Tests
         public void RemoveCityFromDeckCiudadExistenteEnMazo()
         {
             //Arrange
-            Board b = new Board(10,10);
+            Board b = new Board(10, 10);
             //Act
             b.CrearBoardTest(b);
             //Assert
@@ -240,7 +240,7 @@ namespace Tests
             //Arrange
             Player player = new Player(5, 0, 9);
             Board board = new Board(10, 10);
-            
+
             //Assert
             Assert.That(() => { player.Move(board, -6, Direction.Left); }, Throws.Exception, "ERROR: No salta la excepcion de numero de pasos negativos");
             Assert.That(() => { player.Move(board, -1, Direction.Right); }, Throws.Exception, "ERROR: No salta la excepcion de numero de pasos negativos");
@@ -313,7 +313,7 @@ namespace Tests
             //Arrange
             Player player = new Player(5, 9, 0);
             Board board = new Board(10, 10);
-            int puntos; 
+            int puntos;
 
             //Act
             board.CrearBoardTest(board);
@@ -384,5 +384,40 @@ namespace Tests
     public class Opcional
     {
 
+        [Test]
+        public void ReadMapArchivoEncontrado()
+        {
+        }
+        [Test]
+        public void ReadMapArchivoNoEncontrado()
+        {
+        }
+        [Test]
+        public void ReadMapArchivoFormatoCorrecto()
+        {
+        }
+        [Test]
+        public void ReadMapArchivoFormatoInCorrecto()
+        {
+        }
+
+        [Test]
+        public void CreateCityCorrecto()
+        {
+        }
+        [Test]
+        public void CreateCityIncorrecto()
+        {
+        }
+        [Test]
+        public void CreateCityinDeckCorrecto()
+        {
+
+        }
+        [Test]
+        public void CreateCityinDeckInCorrecto()
+        {
+
+        }
     }
 }
