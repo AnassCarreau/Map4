@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Conqueror
 {
@@ -11,8 +12,10 @@ namespace Conqueror
         public static void Main(string[] args)
         {
             // Construcción del tablero y del jugador
-            Board theBoard = InitBoard(3, 5);
-            Player thePlayer = new Player(4, 4, 0);
+            //Board theBoard = InitBoard(3, 5);
+            Board theBoard = ReadMap("Board.dat");
+            
+            Player thePlayer = new Player(4, 10, 0);
 
             bool finishGame = false;
             while (!finishGame)
@@ -184,6 +187,67 @@ namespace Conqueror
             {
                 return Direction.None;
             }
+        }
+        public static Board ReadMap(string file)
+        {
+            string linea;
+            string[] citiesString = new string[100];
+            string[] citiesindecksString = new string[100];
+            int numcities = 0;
+            int numcitiesindecks = 0;
+            int numdecks=0;
+            StreamReader lectura;
+
+            //codigo defensivo por si esta mal introducida la direccion de lectura
+            try
+            {
+                lectura = new StreamReader(file);
+            }
+            catch
+            {
+                throw new Exception("ERROR: No se ha encontrado el archivo " + file);
+            }
+
+
+            while (lectura.EndOfStream == false)
+            {
+                linea = lectura.ReadLine();
+                try
+                {
+                    if (linea.StartsWith("city"))
+                    {
+                        citiesString[numcities] = linea;
+                        numcities++;
+                    }
+                    else if (linea.StartsWith("deck"))
+                    {
+                        citiesindecksString[numcitiesindecks] = linea;
+                        numcitiesindecks++;
+                        numdecks =1+ linea[5]-48;
+                    }
+                    else if (linea != "" && !linea.StartsWith("#"))
+                    {
+                        throw new Exception("Archivo Incorrecto ");
+
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e.Message);
+                }
+            }
+               Board b = new Board(numcities, numdecks);
+            for (int i = 0; i < numcities; i++)
+            {
+                if (!b.CreateCity(citiesString[i])) throw new Exception("Archivo Incorrecto ");
+            }
+            for (int i = 0; i < numcitiesindecks; i++)
+            {
+                if (!b.CreateCityinDeck(citiesindecksString[i])) throw new Exception("Archivo Incorrecto ");
+            }
+            return b;
+
         }
     }
 }

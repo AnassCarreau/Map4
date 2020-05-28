@@ -14,3 +14,20 @@ C:\Users\Aida\Documents\Desarrollo de videojuegos\2º año\MAP\PRACTICA 4\Map4\C
 C:\Users\Aida\Documents\Desarrollo de videojuegos\2º año\MAP\PRACTICA 4\Map4\Conqueror\Tests\obj\Debug\Tests.csproj.CopyComplete
 C:\Users\Aida\Documents\Desarrollo de videojuegos\2º año\MAP\PRACTICA 4\Map4\Conqueror\Tests\obj\Debug\Tests.dll
 C:\Users\Aida\Documents\Desarrollo de videojuegos\2º año\MAP\PRACTICA 4\Map4\Conqueror\Tests\obj\Debug\Tests.pdb
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\obj\Debug\Tests.csprojAssemblyReference.cache
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\obj\Debug\Tests.csproj.CoreCompileInputs.cache
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\obj\Debug\Tests.dll
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\obj\Debug\Tests.pdb
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\bin\Debug\NUnit3.TestAdapter.dll
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\bin\Debug\NUnit3.TestAdapter.pdb
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\bin\Debug\nunit.engine.dll
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\bin\Debug\nunit.engine.api.dll
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\bin\Debug\Tests.dll
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\bin\Debug\Tests.pdb
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\bin\Debug\Conqueror.exe
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\bin\Debug\nunit.framework.dll
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\bin\Debug\Conqueror.pdb
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\bin\Debug\Conqueror.exe.config
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\bin\Debug\nunit.framework.pdb
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\bin\Debug\nunit.framework.xml
+C:\Users\anass\Desktop\Map\Practica4\Map4\Conqueror\Tests\obj\Debug\Tests.csproj.CopyComplete
