@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Listas;
 namespace Conqueror
 {
@@ -281,6 +282,61 @@ namespace Conqueror
         public int CitiesInDeck(int deckIndex)
         {
             return decks[deckIndex].NumEltos();
+        }
+
+        public void CreateCity(string l) 
+        {
+            string[] auxiliar = l.Split(' ');
+            AddCity(auxiliar[1], int.Parse(auxiliar[2]), int.Parse(auxiliar[3]));
+        }
+        public void CreateCityinDeck(string l)
+        {
+            string[] auxiliar = l.Split(' ');
+            AddCityToDeck(auxiliar[1], int.Parse(auxiliar[2]));
+        }
+        public void ReadMap(string file)
+        {
+            string linea;
+            string[] citiesString=new string[100];
+            string[] decksString=new string[100];
+            int numcities=0;
+            int numdecks = 0;
+
+            // Lectura de la lina con este string
+            StreamReader lectura = new StreamReader(file);  // lector de archivo"file"
+            while (lectura.EndOfStream == false)            // Hasta el final de la lectura del archivo
+            {
+                linea = lectura.ReadLine(); // Lectura de linea
+                try
+                {
+                    if (linea.StartsWith("city"))  // Habitaciones
+                    {
+                        citiesString[numcities] = linea;
+                        numcities++;
+                    }
+                    else if (linea.StartsWith("deck")) //Conexiones
+                    {
+                        numdecks = (int)linea[5];
+                        decksString[numdecks] = linea;
+
+                    }
+                    else if (linea == ("") || linea.StartsWith("#")) ;
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e.Message);
+                }
+            }
+            Board b=new Board(numcities,numdecks);
+            for(int i=0;i< numcities; i++) 
+            {
+                CreateCity(citiesString[i]);
+            }
+            for(int i=0;i< numdecks; i++) 
+            {
+                CreateCityinDeck(decksString[i]);
+            }
+
         }
     }
 }

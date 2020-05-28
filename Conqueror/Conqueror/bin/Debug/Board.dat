@@ -1,0 +1,10 @@
+# Ciudades
+city Alejandretta 4 5
+city Troya 2 2
+city Babilonia 6 10
+# Mazos
+deck 0 Alejandretta
+deck 0 Troya
+deck 1 Troya
+deck 3 Alejandretta
+deck 3 Babilonia
