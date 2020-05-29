@@ -179,6 +179,34 @@ namespace Tests
     public class PlayerTest
     {
         [Test]
+        public void MoveCeroDer()
+        {
+            //Arrange
+            Player p = new Player(3, 3, 3);
+            Board b = new Board(10, 10);
+            int pos;
+            //Act
+            p.Move(b, 0, Direction.Right);
+            pos = p.GetPosition();
+            //Assert
+            Assert.That(pos, Is.EqualTo(3), "ERROR: el player no se mueve correctamente a la izquierda");
+        }
+
+        [Test]
+        public void MoveCeroIzq()
+        {
+            //Arrange
+            Player p = new Player(3, 3, 3);
+            Board b = new Board(10, 10);
+            int pos;
+            //Act
+            p.Move(b, 0, Direction.Left);
+            pos = p.GetPosition();
+            //Assert
+            Assert.That(pos, Is.EqualTo(3), "ERROR: el player no se mueve correctamente a la izquierda");
+        }
+
+        [Test]
         public void MoveIzq()
         {
             //Arrange
