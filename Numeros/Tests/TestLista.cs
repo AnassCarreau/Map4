@@ -75,67 +75,68 @@ namespace Tests
             // Arrange
             Lista l = new Lista(3, 1);
             // Act
-            Assert.IsFalse(l.BorraElto(4), "ERROR: La operacion se ha producido");
+            Assert.IsFalse(l.BorraElto(4), "ERROR: El elemento 4 no existe");
             // Assert
-            Assert.IsFalse(l.Esta(4), "ERROR: La operacion se ha producido");
+            Assert.IsFalse(l.Esta(4), "ERROR: El elemento 4 no existe");
         }
         [Test]
         public void BorraEltoFinal()
         {
             // Arrange
             Lista l = new Lista(5, 1);
-
             // Assert
-            Assert.IsTrue(l.Esta(5), "ERROR: La operacion se ha producido");
+            Assert.IsTrue(l.Esta(5), "ERROR:  El elemento 5  existe");
             // Act
-            Assert.IsTrue(l.BorraElto(5), "ERROR: La operacion se ha producido");
+            Assert.IsTrue(l.BorraElto(5), "ERROR:  El elemento 5 no existe");
             // Assert
-            Assert.IsFalse(l.Esta(5), "ERROR: La operacion se ha producido");
+            Assert.IsFalse(l.Esta(5), "ERROR:  El elemento 5 no existe");
         }
         [Test]
-        public void BorraEltoPrincipio()
+        public void BorraEltoPrimero()
         {
             // Arrange
             Lista l = new Lista(5, 1);
-
             // Assert
-            Assert.IsTrue(l.Esta(1), "ERROR: La operacion se ha producido");
-            // Act
-            Assert.IsTrue(l.BorraElto(1), "ERROR: La operacion se ha producido");
+            Assert.IsTrue(l.Esta(1), "ERROR:  El elemento 1  existe");
+            // Act && Assert
+            Assert.IsTrue(l.BorraElto(1), "ERROR:  El elemento 1  no existe");
             // Assert
-            Assert.IsFalse(l.Esta(1), "ERROR: La operacion se ha producido");
+            Assert.IsFalse(l.Esta(1), "ERROR:  El elemento  1 no existe");
         }
         [Test]
         public void BorraEltoListaVacia()
         {
             // Arrange
             Lista l = new Lista();
-            // Act
-            Assert.IsFalse(l.BorraElto(0), "ERROR: La operacion se ha producido");
+            // Act && Assert
+            Assert.IsFalse(l.BorraElto(0), "ERROR:  El elemento  0 no existe");
             // Assert
-            Assert.IsFalse(l.Esta(0), "ERROR: La operacion se ha producido");
+            Assert.IsFalse(l.Esta(0), "ERROR:  El elemento  0 no existe");
         }
         [Test]
         public void BorraEltoUnico()
         {
             // Arrange
             Lista l = new Lista(1,1);
-            // Act
-            Assert.IsTrue(l.BorraElto(1), "ERROR: La operacion se ha producido");
+            // Act && Assert
+            Assert.IsTrue(l.BorraElto(1), "ERROR: El elemento 1 no existe");
             // Assert
-            Assert.That(l.NumEltos(),Is.EqualTo(0), "ERROR: La operacion se ha producido");
+            Assert.That(l.NumEltos(),Is.EqualTo(0), "ERROR:No hay elementos");
         }
+        [Test]
+
         public void BorraEltoRepetido()
         {
             // Arrange
             Lista p = new Lista(3, 2);
-            // Act           
-            Assert.IsTrue(p.BorraElto(3), "ERROR: La operacion se ha producido");
-            Assert.That(p.NumEltos(), Is.EqualTo(5), "ERROR: La operacion se ha producido");
-            Assert.IsTrue(p.Esta(3), "ERROR: La operacion se ha producido");
+            // Act && Assert
+            Assert.IsTrue(p.BorraElto(3), "ERROR: El elemento 1 no existe");
+            Assert.That(p.NumEltos(), Is.EqualTo(5), "ERROR:Hay 5 elementos");
+            Assert.IsTrue(p.Esta(3), "ERROR: El elemento 1 no existe");
 
         }
-        public void BorraEltoRepetidoVarias()
+        [Test]
+        public void BorraEltoRepetidoMientrasExista()
         {
             // Arrange
             Lista l = new Lista(3, 3);
@@ -145,21 +146,22 @@ namespace Tests
             { 
                 l.BorraElto(3);
                 num++;
-            } 
-            Assert.That(l.NumEltos(), Is.EqualTo(9-num), "ERROR: La operacion se ha producido");
-            Assert.IsFalse(l.Esta(3), "ERROR: La operacion se ha producido");
+            }
+            //  Assert
+            Assert.That(l.NumEltos(), Is.EqualTo(9-num), "Hay 6 elementos");
+            Assert.IsFalse(l.Esta(3), "ERROR: El elemento 3 no existe");
 
         }
 
         [Test]
         public void nEsimo()
         {
+            // Arrange
             Lista l = new Lista(5, 3);
-
-            
-            Assert.That(5,Is.EqualTo( l.N_esimo(14)), "ERROR: El elemento numero 13 es un 4");
-            Assert.That(1,Is.EqualTo( l.N_esimo(0)), "ERROR: El elemento numero 13 es un 4");
-            Assert.That(2,Is.EqualTo( l.N_esimo(6)), "ERROR: El elemento numero 13 es un 4");
+            // Act && Assert
+            Assert.That(l.N_esimo(14),Is.EqualTo(5), "ERROR: El elemento numero 14 es un 5");
+            Assert.That(l.N_esimo(0),Is.EqualTo(1), "ERROR: El elemento numero 0 es un 1");
+            Assert.That(l.N_esimo(6),Is.EqualTo(2), "ERROR: El elemento numero 6 es un 2");
 
         }
         [Test]
@@ -167,61 +169,48 @@ namespace Tests
         {
             // Arrange
             Lista l = new Lista();
-
-            Assert.That(() => { l.N_esimo(1); },Throws.Exception, "ERROR:Hay elementos en la lista");
+            // Act && Assert
+            Assert.That(() => { l.N_esimo(1); },Throws.Exception, "ERROR:No hay elementos en la lista");
         }
         [Test]
         public void nEsimoNegativo()
         {
-            Lista l = new Lista(5, 3);
-
-
-            Assert.That(() => { l.N_esimo(-1); }, Throws.Exception, "ERROR:Hay elementos en la lista");
-
-
+            // Arrange
+            Lista l = new Lista(5, 3);      
+            // Act && Assert
+            Assert.That(() => { l.N_esimo(-1); }, Throws.Exception, "ERROR:No hay  posiciones negativas  en la lista");
         }
         [Test]
-        public void nEsimoMayorqueElem()
-        {
+        public void nEsimoMayorqueNumdeElem()
+        {       
+            // Arrange
             Lista l = new Lista(5, 3);
-
-
-            Assert.That(() => { l.N_esimo(20); }, Throws.Exception, "ERROR:Hay elementos en la lista");
-
-
+            // Act && Assert
+            Assert.That(() => { l.N_esimo(20); }, Throws.Exception, "ERROR:No existe la posicion 20 en la lista");
         }
         [Test]
         public void nEsimoUltimo()
         {
             // Arrange
-            Lista r = new Lista(8, 1);
-            int posicion = 7;
-            // Act
-            int valor = r.N_esimo(posicion);
-            // Assert
-            Assert.That(valor, Is.EqualTo(posicion + 1), "ERROR: nEsimo(0) en lista no devuelve valor 8");
+            Lista l = new Lista(8, 1);
+            // Act && Assert
+            Assert.That(l.N_esimo(l.NumEltos() - 1), Is.EqualTo(8), "ERROR: El elemento final es un 8");
         }
         [Test]
         public void nEsimoRep()
         {
             // Arrange
-            Lista r = new Lista(4, 3);
-            int posicion = 7;
-            // Act
-            int valor = r.N_esimo(posicion);
-            // Assert
-            Assert.That(valor, Is.EqualTo(4), "ERROR: nEsimo(0) en lista no devuelve valor 8");
+            Lista l= new Lista(5, 3);
+            // Act && Assert
+            Assert.That(l.N_esimo(9), Is.EqualTo(5), "ERROR: El elemento numero 9 es un 5");
         }
         [Test]
         public void nEsimoPrimero()
         {
             // Arrange
-            Lista r = new Lista(3, 2);
-            int posicion = 0;
-            // Act
-            int valor = r.N_esimo(posicion);
-            // Assert
-            Assert.That(valor, Is.EqualTo(1), "ERROR: nEsimo(0) en lista no devuelve valor 1");
+            Lista l = new Lista(3, 2);
+            // Act && Assert
+            Assert.That(l.N_esimo(0), Is.EqualTo(1), "ERROR: El elemento numero 0 es un 1");
         }
     }
 }
