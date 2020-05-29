@@ -545,7 +545,13 @@ namespace Tests
     [TestFixture]
     public class Opcional
     {
-
+        /// <summary>
+        /// PRUEBAS DE static Board ReadMap(string file);
+        /// casos
+        /// 1. Archivo encontrado y correcto
+        /// 2. Archivo no encontrado
+        /// 3. Archivo encontrado pero formato incorrecto
+        /// </summary>
         [Test]
         public void ReadMapArchivoEncontradoYCorrecto()
         {
@@ -569,6 +575,13 @@ namespace Tests
             //Assert    
             Assert.That(() => { MainClass.ReadMap("BoardMalo.txt"); }, Throws.Exception, "ERROR: ");
         }
+        /// <summary>
+        /// PRUEBAS DE bool CreateCity(string l);
+        /// casos
+        /// 1. Ciudad creada correctamente
+        /// 2. Ciudad no añadida por tamaño insuficiente del array
+        /// 3. Ciudad no creada por mal formato
+        /// </summary>
         [Test]
         public void CreateCityAñadido()
         {
@@ -596,8 +609,15 @@ namespace Tests
             //Assert
             Assert.That(() => { b.CreateCity("city 7 7 Hola"); },Throws.Exception , "ERROR: el formato de entrada no es correcto");
         }
+        /// <summary>
+        /// PRUEBAS DE bool CreateCity(string l);
+        /// casos
+        /// 1. Ciudad creada y añadida al mazo correctamente
+        /// 2. Ciudad no añadida por tamaño nombre incorrecto de la ciudad
+        /// 3. Ciudad no añadida por mazo inexistente
+        /// 4. Ciudad no añadida por mal formato de la linea de mazo
+        /// </summary>
         [Test]
-
         public void CreateCityinDeckAñadido()
         {
             //Arrange
