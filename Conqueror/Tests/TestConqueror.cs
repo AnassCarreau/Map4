@@ -296,7 +296,7 @@ namespace Tests
             //Arrange
             Player player = new Player(5, 9, 0);
             Board board = new Board(10, 10);
-            int puntos = 0;
+            int puntos ;
 
             //Act
             board.CrearBoardTest(board);
@@ -385,8 +385,9 @@ namespace Tests
     {
 
         [Test]
-        public void ReadMapArchivoEncontrado()
+        public void ReadMapArchivoEncontradoYCorrecto()
         {
+            //Arrange && //Act &&
             //Assert
             Assert.That(() => { MainClass.ReadMap("Board.dat"); }, Throws.Exception, "ERROR: ");
         }
@@ -394,55 +395,46 @@ namespace Tests
         [Test]
         public void ReadMapArchivoNoEncontrado()
         {
-            //Assert
-            Assert.That(() => { MainClass.ReadMap("Hola"); }, Throws.Exception, "ERROR: ");
-        }
-
-        [Test]
-        public void ReadMapArchivoFormatoCorrecto()
-        {
-            //Assert 
-            
+            //Arrange && //Act &&
+            //Assert            
+            Assert.That(() => { MainClass.ReadMap("Hola.dat"); }, Throws.Exception, "ERROR: ");
         }
 
         [Test]
         public void ReadMapArchivoFormatoInCorrecto()
         {
+            //Arrange && //Act &&
+            //Assert    
+            Assert.That(() => { MainClass.ReadMap("BoardMalo.txt"); }, Throws.Exception, "ERROR: ");
         }
-
         [Test]
         public void CreateCityAñadido()
         {
             //Arrange
             Board b = new Board(10, 10);
-
-            //Act
-
-            //Assert
+            //Assert  &&   //Act
             Assert.IsTrue(b.CreateCity("city Troya 2 2"), "ERROR: ");
             Assert.IsTrue(b.CreateCity("city Madrid 5 5"), "ERROR: ");
         }
 
         [Test]
-        public void CreateCityNoAñadido()
+        public void CreateCityNoAñadidoPorTamaño()
         {
             //Arrange
             Board b = new Board(1, 1);
-
-            //Act
-            b.CreateCity("city Barcelona 4 4");
-            //Assert
-            Assert.IsFalse(b.CreateCity("city Troya 2 2"), "ERROR: ");
-           // Assert.IsFalse(b.CreateCity("city 5 Madrid 5"), "ERROR: ");
+            //Assert  &&   //Act
+            Assert.IsTrue(b.CreateCity("city Troya 2 2"), "ERROR: ");
+            Assert.IsFalse(b.CreateCity("city Madrid 5 2"), "ERROR: ");
         }
-
+        [Test]
         public void CreateCityMalFormato()
         {
             //Arrange
             Board b = new Board(10, 10);
             //Assert
-            Assert.That(() => { b.CreateCity("city 7 7 Hola"); }, Throws.Exception , "ERROR: el formato de entrada no es correcto");
+            Assert.That(() => { b.CreateCity("city 7 7 Hola"); },Throws.Exception , "ERROR: el formato de entrada no es correcto");
         }
+        [Test]
 
         public void CreateCityinDeckAñadido()
         {
@@ -450,31 +442,41 @@ namespace Tests
             Board b = new Board(10, 10);
 
             //Act
-
+            b.CreateCity("city Barcelona 4 4");
             //Assert
-            Assert.IsTrue(b.CreateCityinDeck("deck 0 Alejandretta"), "ERROR: ");
-            Assert.IsTrue(b.CreateCityinDeck("deck 5 Madrid"), "ERROR: ");
+            Assert.IsTrue(b.CreateCityinDeck("deck 0 Barcelona"), "ERROR: ");
         }
 
         [Test]
-        public void CreateCityinDeckNoAñadido()
+        public void CreateCityinDeckNoAñadidoPorNombreInexistente()
         {
             //Arrange
             Board b = new Board(1, 1);
 
             //Act
-            b.CreateCityinDeck("deck 0 Alejandretta");
+            b.CreateCity("city Barcelona 4 4");
             //Assert
-            Assert.IsFalse(b.CreateCityinDeck("deck 5 Madrid"), "ERROR: ");
+            Assert.IsFalse(b.CreateCityinDeck("deck 0 Barcelonasss"), "ERROR: ");
+        }
+        [Test]
+        public void CreateCityinDeckNoAñadidoPorDeckInexistente()
+        {
+            //Arrange
+            Board b = new Board(1, 1);
+
+            //Act
+            b.CreateCity("city Barcelona 4 4");
+            //Assert
+            Assert.IsFalse(b.CreateCityinDeck("deck 1 Barcelona"), "ERROR: ");
             // Assert.IsFalse(b.CreateCity("city 5 Madrid 5"), "ERROR: ");
         }
-
+        [Test]
         public void CreateCityinDeckMalFormato()
         {
             //Arrange
             Board b = new Board(10, 10);
             //Assert
-            Assert.That(() => { b.CreateCity("city 7 7 Hola"); }, Throws.Exception, "ERROR: el formato de entrada no es correcto");
+            Assert.That(() => { b.CreateCityinDeck("deck Madrid 0"); }, Throws.Exception, "ERROR: el formato de entrada no es correcto");
         }
     }
 }
