@@ -172,18 +172,21 @@ namespace Conqueror
         public int Move(int playerPosition, int steps, Direction movementDir)
         {
             int move = 0;
-            if (movementDir == Direction.Right) { move = 1; }
-            else move = -1;
-            for (int i = 0; i < steps; i++)
+            if (steps > 0)
             {
-                playerPosition += move;
+                if (movementDir == Direction.Right) { move = 1; }
+                else move = -1;
+                for (int i = 0; i < steps; i++)
+                {
+                    playerPosition += move;
 
+                }
+
+                if (playerPosition < 0)
+                { playerPosition = decks.Length + playerPosition; }
+                else if (playerPosition >= decks.Length)
+                { playerPosition = playerPosition - decks.Length; }
             }
-
-            if (playerPosition < 0)
-            { playerPosition = decks.Length + playerPosition; }
-            else if (playerPosition >= decks.Length)
-            { playerPosition = playerPosition - decks.Length; }
 
             return playerPosition;
         }
@@ -210,7 +213,9 @@ namespace Conqueror
         /// <returns>True si el ataque fue un éxito; false, en otro caso </returns>
         public bool AttackCity(int cityIndex, int attackPoints)
         {
-            return cities[cityIndex].defense < attackPoints;
+            if (attackPoints > 0)
+                return cities[cityIndex].defense < attackPoints;
+            else return false;
         }
 
         /// <summary>

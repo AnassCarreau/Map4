@@ -11,6 +11,14 @@ namespace Tests
     [TestFixture]
     public class BoardTest
     {
+        /// <summary>
+        /// PRUEBAS DE int FindCityByName(string cityName);
+        /// casos
+        /// 1. Ciudad que no existe
+        /// 2. Ciudad que existe
+        /// 3. Ciudad con mayusculas
+        /// 4. Ciudad con minusculas
+        /// </summary>
         [Test]
         public void FindCityByNameExistente()
         {
@@ -60,6 +68,15 @@ namespace Tests
             Assert.That(numName, Is.EqualTo(-1), "ERROR: el nombre de la ciudad esta escrito en minusculas");
         }
 
+        /// <summary>
+        /// PRUEBAS DE bool AttackCity(int cityIndex, int attackPoints);
+        /// casos
+        /// 1. Ataque con exito
+        /// 2. Ataque fallido
+        /// 3. Ataque con mismo numero de defensa de la ciudad
+        /// 4. Ataque con numero negativo
+        /// </summary>
+
         [Test]
         public void AttackCityExito()
         {
@@ -93,6 +110,24 @@ namespace Tests
             Assert.IsFalse(b.AttackCity(0, 4), "ERROR: el ataque no fue el mismo que la defensa de la torre");
         }
 
+        public void AttackCityAtaqueNegativo()
+        {
+            //Arrange
+            Board b = new Board(10, 10);
+            //Act
+            b.CrearBoardTest(b);
+            //Assert
+            Assert.IsFalse(b.AttackCity(0, -4), "ERROR: el ataque no es negativo");
+        }
+
+        /// <summary>
+        /// PRUEBAS DE bool RemoveCityFromDeck(int deckIndex, int cityIndex);
+        /// casos
+        /// 1. Ciudad existente en mazo
+        /// 2. Ciudad no existente en mazo
+        /// 3. Numero de mazo no existente
+        /// </summary>
+
         [Test]
         public void RemoveCityFromDeckCiudadExistenteEnMazo()
         {
@@ -124,6 +159,39 @@ namespace Tests
             b.CrearBoardTest(b);
             //Assert
             Assert.IsFalse(b.RemoveCityFromDeck(9, 0), "ERROR: El mazo existe en el tablero");
+        }
+
+        /// <summary>
+        /// PRUEBAS DE int Move(int playerPosition, int steps, Direction movementDir);
+        /// casos
+        /// 1. Moverse cero derecha e izquierda
+        /// 2. Moverse derecha e izquierda no ciclico
+        /// 3. Moverse derecha e izquierda ciclico
+        /// 4. No moverse si entra un numero negativo derecha e izquierda
+        /// </summary>
+
+        [Test]
+        public void MoveCeroIzq()
+        {
+            //Arrange
+            Board b = new Board(10, 10);
+            //Act
+            b.CrearBoardTest(b);
+            int numPos = b.Move(9, 0, Direction.Left);
+            //Assert
+            Assert.That(numPos, Is.EqualTo(9), "ERROR: no te mueves 0 pasos");
+        }
+
+        [Test]
+        public void MoveCeroDer()
+        {
+            //Arrange
+            Board b = new Board(10, 10);
+            //Act
+            b.CrearBoardTest(b);
+            int numPos = b.Move(9, 0, Direction.Right);
+            //Assert
+            Assert.That(numPos, Is.EqualTo(9), "ERROR: no te mueves 0 pasos");
         }
 
         [Test]
@@ -173,11 +241,46 @@ namespace Tests
             //Assert
             Assert.That(numPos, Is.EqualTo(1), "ERROR: no se hace correctamente el movimiento ciclico a la derecha");
         }
+
+        [Test]
+        public void MoveNumNegativoDer()
+        {
+            //Arrange
+            Board b = new Board(10, 10);
+            //Act
+            b.CrearBoardTest(b);
+            int numPos = b.Move(9, -2, Direction.Right);
+            //Assert
+            Assert.That(numPos, Is.EqualTo(9), "ERROR: no se hace correctamente el movimiento ciclico a la derecha");
+        }
+
+        [Test]
+        public void MoveNumNegativoIzq()
+        {
+            //Arrange
+            Board b = new Board(10, 10);
+            //Act
+            b.CrearBoardTest(b);
+            int numPos = b.Move(9, -2, Direction.Left);
+            //Assert
+            Assert.That(numPos, Is.EqualTo(9), "ERROR: no se hace correctamente el movimiento ciclico a la derecha");
+        }
     }
 
     [TestFixture]
     public class PlayerTest
     {
+        /// <summary>
+        /// PRUEBAS DE bool Move(Board theBoard, int steps, Direction movementDir);
+        /// casos
+        /// 1. Moverse cero derecha e izquierda
+        /// 2. Moverse derecha e izquierda no ciclico
+        /// 3. Moverse derecha e izquierda ciclico
+        /// 4. No moverse si entra un numero negativo derecha e izquierda
+        /// 5. Moverse y no agotar movimientos max
+        /// 6. Moverse y justo agotar los movimientos max
+        /// 7. No moverse porque no quedan movimientos max
+        /// </summary>
         [Test]
         public void MoveCeroDer()
         {
@@ -317,9 +420,32 @@ namespace Tests
             Assert.IsFalse(player.Move(board, 4, Direction.Right), "ERROR: no quedan movimientos en el player");
         }
 
+        /// <summary>
+        /// PRUEBAS DE int ComputePlayerPoints(Board theBoard);
+        /// casos
+        /// 1. Recoger el numero de conquista de la ciudad conquistada (solo una ciudad)
+        /// 2. Recoge la suma de las ciudades conquistadas (mas de una ciudad)
+        /// 3. Recoger los numeros del player cuando son 0
+        /// </summary>
 
         [Test]
-        public void ComputePlayerPoints()
+        public void ComputePlayerPointsUna()
+        {
+            //Arrange
+            Player player = new Player(5, 9, 0);
+            Board board = new Board(10, 10);
+            int puntos;
+
+            //Act
+            board.CrearBoardTest(board);
+            player.AttackCity(board, "Alejandretta");
+            puntos = player.ComputePlayerPoints(board);
+            //Assert
+            Assert.That(puntos, Is.EqualTo(5), "ERROR: El metodo no recoge bien los puntos de conquista");
+        }
+
+        [Test]
+        public void ComputePlayerPointsSuma()
         {
             //Arrange
             Player player = new Player(5, 9, 0);
@@ -351,6 +477,14 @@ namespace Tests
             Assert.That(puntos, Is.EqualTo(0), "ERROR: no recoge bien los puntos de conquista al ser 0");
         }
 
+        /// <summary>
+        /// PRUEBAS DE bool AttackCity(Board theBoard, string cityName);
+        /// casos
+        /// 1. El ataque a la ciudad ha tenido exito
+        /// 2. El ataque a la ciudad ha fracasado
+        /// 3. La ciudad a la que se queire atacar no existe
+        /// 4. La ciudad a la que se queire atacar no existe en el mazo
+        /// </summary>
 
         [Test]
         public void AttackCityExito()
